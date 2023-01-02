@@ -32,7 +32,7 @@ A Windows Powershell:
 
 ### Llicència ###
 
-Tenir en compte les llicències de "WebSockets" i "slf4j":
+Tenir en compte les llicències MIT de "WebSockets" i "slf4j":
 
 [WebSockets](https://github.com/TooTallNate/Java-WebSocket)
 
