@@ -8,13 +8,13 @@ mkdir -p ./bin
 cp -r ./assets ./bin
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
-    javac -d ./bin/ ./src/*.java
-    java  -cp "./:./bin/" Main
+    javac -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -d ./bin/ ./src/*.java
+    java  -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -cp "./:./bin/" Main
 fi
 
 if [[ $OSTYPE == 'darwin'* ]] && [[ $(arch) == 'i386' ]]; then
-    javac -d ./bin/ ./src/*.java
-    java  -cp "./:./bin/" Main
+    javac -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -d ./bin/ ./src/*.java
+    java  -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -cp "./:./bin/" Main
 fi
 
 if [[ $OSTYPE == 'darwin'* ]] && [[ $(arch) == 'arm64' ]]; then
