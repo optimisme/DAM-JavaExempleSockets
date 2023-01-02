@@ -7,5 +7,5 @@ rm -r -force .\lib\javafx-windows\lib\.*
 mkdir bin
 xcopy .\assets .\bin\assets /E /I /Y
 
-javac -cp ".:.\\bin:.\\lib\\Java-WebSocket-1.5.3.jar:.\\lib\\slf4j-api-2.0.3.jar:.\\lib\\slf4j-simple-2.0.3.jar" -d .\bin\ .\src\*.java
-java -cp ".:.\\bin:.\\lib\\Java-WebSocket-1.5.3.jar:.\\lib\\slf4j-api-2.0.3.jar:.\\lib\\slf4j-simple-2.0.3.jar" Main
+javac -cp ".;.\\bin;.\\lib\\Java-WebSocket-1.5.3.jar;.\\lib\\slf4j-api-2.0.3.jar;.\\lib\\slf4j-simple-2.0.3.jar" -d .\bin\ .\src\*.java
+java -cp ".;.\\bin;.\\lib\\Java-WebSocket-1.5.3.jar;.\\lib\\slf4j-api-2.0.3.jar;.\\lib\\slf4j-simple-2.0.3.jar" Main
