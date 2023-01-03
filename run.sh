@@ -9,12 +9,12 @@ cp -r ./assets ./bin
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
     javac -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -d ./bin/ ./src/*.java
-    java  -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -cp "./:./bin/" Main
+    java  -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" Main
 fi
 
 if [[ $OSTYPE == 'darwin'* ]] && [[ $(arch) == 'i386' ]]; then
     javac -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -d ./bin/ ./src/*.java
-    java  -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" -cp "./:./bin/" Main
+    java  -cp "./:./bin:./lib/Java-WebSocket-1.5.3.jar:./lib/slf4j-api-2.0.3.jar:./lib/slf4j-simple-2.0.3.jar" Main
 fi
 
 if [[ $OSTYPE == 'darwin'* ]] && [[ $(arch) == 'arm64' ]]; then
