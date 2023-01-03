@@ -12,7 +12,7 @@ public class Main {
 
         while (running) {
 
-            String menu = Colors.CYAN + "Escull una opció:" + Colors.RESET;
+            String menu = "Escull una opció:";
             menu = menu + "\n 0) Servidor UDP";
             menu = menu + "\n 1) Client UDP";
             menu = menu + "\n 2) Servidor TCP";
@@ -42,7 +42,7 @@ public class Main {
     }
 
     static public String llegirLinia (String text) {
-        System.out.print(Colors.GREEN + text + " " + Colors.RESET);
+        System.out.print(text);
         return in.nextLine();
     }
 }
