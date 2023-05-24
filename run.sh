@@ -3,7 +3,7 @@
 reset
 
 # Remove any existing Project.jar file
-rm Project.jar
+rm -rf ./release
 
 # Remove any existing .class files from the bin directory
 rm -rf ./bin
@@ -33,10 +33,13 @@ export CLASSPATH=${class_path#:}
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
-jar cfm Project.jar ./src/Manifest.txt -C bin . 
+jar cfm release/Project.jar ./src/Manifest.txt -C bin . 
+cp -r ./lib ./release
 
 # Remove any .class files from the bin directory
 rm -rf ./bin
 
 # Run the Project.jar file
-java -jar Project.jar -cp $CLASSPATH
+cd release
+java -cp Project.jar:$CLASSPATH Main
+cd ..

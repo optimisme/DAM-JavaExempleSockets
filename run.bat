@@ -3,7 +3,7 @@ rem run with: .\run.bat
 cls
 
 REM Remove any existing Project.jar file
-del Project.jar
+del /Q release\Project.jar
 
 REM Remove any existing .class files from the bin directory
 del /Q bin\*.*
@@ -38,6 +38,8 @@ del /Q bin\*.*
 rd bin
 
 REM Run the Project.jar file
+cd release
 java -jar Project.jar -cp "%class_path%"
+cd ..
 
 endlocal
