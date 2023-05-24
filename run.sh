@@ -6,7 +6,7 @@ reset
 rm Project.jar
 
 # Remove any existing .class files from the bin directory
-rm -f ./bin/*.* 
+rm -rf ./bin
 
 # Create the bin directory if it doesn't exist
 mkdir -p ./bin
@@ -36,8 +36,7 @@ javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 jar cfm Project.jar ./src/Manifest.txt -C bin . 
 
 # Remove any .class files from the bin directory
-rm -f ./bin/*.* 
-rmdir ./bin
+rm -rf ./bin
 
 # Run the Project.jar file
 java -jar Project.jar -cp $CLASSPATH
