@@ -1,45 +1,42 @@
-rem run with: .\run.bat
-
-cls
+@echo off
 
 REM Remove any existing Project.jar file
-del /Q release\Project.jar
+if exist .\release rmdir /s /q .\release
 
 REM Remove any existing .class files from the bin directory
-del /Q bin\*.*
+if exist .\bin rmdir /s /q .\bin
 
 REM Create the bin directory if it doesn't exist
-mkdir bin
+if not exist .\bin mkdir .\bin
 
 REM Copy the assets directory to the bin directory
-xcopy /E /I assets bin\assets
+xcopy /E /I .\assets .\bin\assets
 
 REM Generate the CLASSPATH by iterating over JAR files in the lib directory and its subdirectories
-set "lib_dir=lib"
-setlocal enabledelayedexpansion
-set "class_path="
-
-REM Find all JAR files in the lib directory and its subdirectories
-for /R "%lib_dir%" %%F in (*.jar) do (
-  set "class_path=!class_path!;%%F"
+SETLOCAL ENABLEDELAYEDEXPANSION
+SET lib_dir=lib
+SET class_path=;
+FOR /R %lib_dir% %%G IN (*.jar) DO (
+   SET class_path=!class_path!;%%G
 )
-
-REM Remove the leading ';' from the class_path
-set "class_path=!class_path:~1!"
+SET CLASSPATH=%class_path:~1%
 
 REM Compile the Java source files and place the .class files in the bin directory
-javac -d bin/ src/*.java -cp "%class_path%"
+javac -d .\bin\ .\src\*.java -cp %CLASSPATH%
 
 REM Create the Project.jar file with the specified manifest file and the contents of the bin directory
-jar cfm Project.jar src/Manifest.txt -C bin .
+echo Main-Class: Main > .\Manifest.txt
+echo Class-Path: . >> .\Manifest.txt
+jar cfm .\release\Project.jar .\Manifest.txt -C .\bin\ .
+del .\Manifest.txt
+
+REM Copy the lib directory to the release directory
+xcopy /E /I .\lib .\release\lib
 
 REM Remove any .class files from the bin directory
-del /Q bin\*.*
-rd bin
+if exist .\bin rmdir /s /q .\bin
 
 REM Run the Project.jar file
-cd release
-java -jar Project.jar -cp "%class_path%"
+cd .\release
+java -cp Project.jar;%CLASSPATH% Main
 cd ..
-
-endlocal
