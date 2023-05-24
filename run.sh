@@ -33,10 +33,7 @@ export CLASSPATH=${class_path#:}
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
-echo "Main-Class: Main" > ./Manifest.txt
-echo "Class-Path: ." >> ./Manifest.txt
 jar cfm release/Project.jar ./Manifest.txt -C bin . 
-rm ./Manifest.txt
 cp -r ./lib ./release
 
 # Remove any .class files from the bin directory
