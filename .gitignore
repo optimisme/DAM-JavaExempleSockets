@@ -26,3 +26,6 @@ Temporary Items
 .apdisk
 bin/*
 *.jar
+
+# Ignore release folder
+release/*
