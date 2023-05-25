@@ -41,8 +41,6 @@ jar cfm ./Project.jar ./Manifest.txt -C bin .
 # Remove any .class files from the bin directory
 rm -rf ./bin
 
-# Remove any existing Project.jar file
-
 # Get out of the development directory
 cd ..
 
