@@ -54,7 +54,7 @@ cp -r ./$folderDevelopment/lib ./$folderRelease/lib
 cat > run.sh << EOF
 #!/bin/bash
 
-java -jar Project.jar
+java -cp Project.jar:$CLASSPATH Main
 EOF
 
 # Fem l'arxiu executable
@@ -63,5 +63,5 @@ mv run.sh ./$folderRelease/run.sh
 
 # Run the Project.jar file
 cd ./$folderRelease
-java -cp Project.jar:$CLASSPATH Main
+./run.sh
 cd ..

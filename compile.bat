@@ -44,11 +44,12 @@ move %folderDevelopment%\Project.jar %folderRelease%\Project.jar
 xcopy /E /I %folderDevelopment%\lib %folderRelease%\lib
 
 :: Create the 'run.bat' file
-echo java -jar Project.jar > run.bat
+echo java -cp Project.jar:$CLASSPATH Main > run.bat
 move run.bat %folderRelease%\run.bat
 
 :: Run the Project.jar file
 cd %folderRelease%
-java -cp Project.jar;%class_path% Main
+exec run.bat
+cd ..
 
 ENDLOCAL
