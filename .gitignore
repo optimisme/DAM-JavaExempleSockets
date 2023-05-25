@@ -28,4 +28,4 @@ bin/*
 *.jar
 
 # Ignore release folder
-release/*
+Release/*
