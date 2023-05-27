@@ -31,7 +31,7 @@ $CLASSPATH = ($jar_files | ForEach-Object {
 }) -join ';'
 
 # Generate the CLASSPATHX by replacing backslashes with normal slashes and removing ".\\"
-$CLASSPATHX = $CLASSPATH.Replace('.\\', '').Replace('\', '/')
+$CLASSPATHX = $CLASSPATH -replace '^\.\\', '' -replace '\\', '/'
 
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH

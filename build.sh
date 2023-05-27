@@ -35,7 +35,7 @@ class_path=$(IFS=:; echo "${jar_files[*]}")
 export CLASSPATH=${class_path#:}
 
 # Generate the CLASSPATHWIN by replacing normal slashes with backslashes and adding ".\\"
-CLASSPATHWIN=$(echo $CLASSPATH | sed 's/^lib\//.\\lib\\/g; s/lib\//lib\\/g')
+CLASSPATHWIN=$(echo $CLASSPATH | sed 's/^lib\//.\\\\lib\\\\/g; s/lib\//lib\\\\/g')
 
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
