@@ -30,6 +30,9 @@ $CLASSPATH = ($jar_files | ForEach-Object {
     } 
 }) -join ';'
 
+# Generate the CLASSPATHX by replacing backslashes with normal slashes and removing ".\\"
+$CLASSPATHX = $CLASSPATH.Replace('.\\', '').Replace('\', '/')
+
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 
@@ -59,7 +62,7 @@ java -cp "Project.jar;$CLASSPATH" Main
 # Create the 'run.sh' file
 @"
 #!/bin/bash
-java -cp "Project.jar;$CLASSPATH" Main
+java -cp "Project.jar;$CLASSPATHX" Main
 "@ | Set-Content -Path ./$folderRelease/run.sh -Encoding UTF8
 
 # Run the Project.jar file

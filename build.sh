@@ -34,6 +34,9 @@ class_path=$(IFS=:; echo "${jar_files[*]}")
 # Remove the leading ':' from the class_path
 export CLASSPATH=${class_path#:}
 
+# Generate the CLASSPATHWIN by replacing normal slashes with backslashes and adding ".\\"
+CLASSPATHWIN=$(echo $CLASSPATH | sed 's/^lib\//.\\lib\\/g; s/lib\//lib\\/g')
+
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 
@@ -60,7 +63,7 @@ EOF
 
 # Create the 'run.ps1' file
 cat > run.ps1 << EOF
-java -cp "Project.jar:$CLASSPATH" Main
+java -cp "Project.jar:$CLASSPATHWIN" Main
 EOF
 
 # Fem l'arxiu executable
