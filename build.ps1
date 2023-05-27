@@ -64,9 +64,8 @@ java -cp "Project.jar;$CLASSPATH" Main
 #!/bin/bash
 java -cp "Project.jar;$CLASSPATH" Main
 "@ | Set-Content -Path ./$folderRelease/run.sh -Encoding UTF8
-<#
+
 # Run the Project.jar file
 Set-Location ./$folderRelease
 ./run.ps1
 Set-Location ..
-#>
