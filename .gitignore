@@ -25,7 +25,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 bin/*
-*.jar
 
 # Ignore release folder
 Release/
