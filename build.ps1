@@ -32,7 +32,8 @@ $CLASSPATH = ($jar_files | ForEach-Object {
 
 # Print the CLASSPATH for debugging
 Write-Output $CLASSPATH
-
+cd ..
+<#
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 
@@ -70,3 +71,4 @@ java -cp Project.jar;$CLASSPATH Main
 Set-Location ./$folderRelease
 ./run.ps1
 Set-Location ..
+#>
