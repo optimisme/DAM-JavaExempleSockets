@@ -21,26 +21,21 @@ if (Test-Path -Path "./assets") {
 $lib_dir = (Resolve-Path "lib").Path
 $jar_files = Get-ChildItem -Path $lib_dir -Filter "*.jar" -Recurse | ForEach-Object { ".\\lib\\" + $_.FullName.Replace($lib_dir + '\', '') }
 
-# Ensure to use the correct directory separator and enclose paths with quotes if they contain spaces
+# Enclose paths with quotes if they contain spaces
 $CLASSPATH = ($jar_files | ForEach-Object { 
     if($_ -match '\s') {
-        "`"" + $_.ToString().Replace('\', '/') + "`""
+        "`"" + $_ + "`""
     } else {
-        $_.ToString().Replace('\', '/')
+        $_
     } 
 }) -join ';'
 
 # Print the CLASSPATH for debugging
 Write-Output $CLASSPATH
 
-# Print the CLASSPATH for debugging
-Write-Output $CLASSPATH
-cd ..
-<#
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
-
-
+<#
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
 $jarExePath = Get-ChildItem -Path C:\ -Recurse -Filter "jar.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
 & $jarExePath cfm ./Project.jar ./Manifest.txt -C bin .
