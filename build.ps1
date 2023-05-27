@@ -70,7 +70,7 @@ java -cp "Project.jar;$CLASSPATH" Main
 # Create the 'run.sh' file
 @"
 #!/bin/bash
-java -cp "Project.jar;$CLASSPATHX" Main
+java -cp "Project.jar:$CLASSPATHX" Main
 "@ | Set-Content -Path ./$folderRelease/run.sh -Encoding UTF8
 
 # Run the Project.jar file
