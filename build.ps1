@@ -30,11 +30,19 @@ $CLASSPATH = ($jar_files | ForEach-Object {
     } 
 }) -join ';'
 
-# Generate the CLASSPATHX by replacing backslashes with normal slashes and removing ".\\"
-$CLASSPATHX = ($CLASSPATH -split ';' | ForEach-Object { $_ -replace '^\.\\lib\\\\', 'lib/' }) -join ':'
+# Generate the CLASSPATH or UNIX
+$jar_files = Get-ChildItem -Path $lib_dir -Filter "*.jar" -Recurse | ForEach-Object {
+    "lib/" + $_.FullName.Replace($lib_dir + '\', '')
+}
 
-# Compile the Java source files and place the .class files in the bin directory
-javac -d ./bin/ ./src/*.java -cp $CLASSPATH
+# Enclose paths with quotes if they contain spaces
+$CLASSPATHX = ($jar_files | ForEach-Object { 
+    if($_ -match '\s') {
+        "`"" + $_ + "`""
+    } else {
+        $_
+    } 
+}) -join ':'
 
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
 $jarExePath = Get-ChildItem -Path C:\ -Recurse -Filter "jar.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
