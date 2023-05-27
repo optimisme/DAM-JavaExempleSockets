@@ -23,19 +23,21 @@ fi
 lib_dir="lib"
 jar_files=()
 
-# Find all JAR files in the lib directory and its subdirectories
+# Trobar tots els fitxers JAR al directori lib i els seus subdirectoris
 while IFS= read -r -d '' jar_file; do
   jar_files+=("$jar_file")
 done < <(find "$lib_dir" -name "*.jar" -type f -print0)
 
-# Join the JAR files into the class_path
+# Unir els fitxers JAR en el class_path
 class_path=$(IFS=:; echo "${jar_files[*]}")
 
-# Remove the leading ':' from the class_path
+# Eliminar el ':' inicial del class_path
 export CLASSPATH=${class_path#:}
 
-# Generate the CLASSPATHWIN by replacing normal slashes with backslashes and adding ".\\"
-CLASSPATHWIN=$(echo $CLASSPATH | sed 's/^lib\//.\\\\lib\\\\/g; s/lib\//lib\\\\/g')
+# Generar el class_path compatible amb Windows
+class_path_win=$(IFS=";"; printf "%s" "${jar_files[*]//\//\\\\}")
+class_path_win=${class_path_win%;}
+export CLASSPATHWIN=${class_path_win}
 
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
@@ -63,7 +65,7 @@ EOF
 
 # Create the 'run.ps1' file
 cat > run.ps1 << EOF
-java -cp "Project.jar:$CLASSPATHWIN" Main
+java -cp "Project.jar;$CLASSPATHWIN" Main
 EOF
 
 # Fem l'arxiu executable
