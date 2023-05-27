@@ -56,13 +56,13 @@ Copy-Item -Recurse -Force "./$folderDevelopment/lib" "./$folderRelease/lib"
 
 # Create the 'run.ps1' file
 @"
-java -cp Project.jar;$CLASSPATH Main
+java -cp "Project.jar;$CLASSPATH" Main
 "@ | Set-Content -Path ./$folderRelease/run.ps1 -Encoding UTF8
 
 # Create the 'run.sh' file
 @"
 #!/bin/bash
-java -cp Project.jar;$CLASSPATH Main
+java -cp "Project.jar;$CLASSPATH" Main
 "@ | Set-Content -Path ./$folderRelease/run.sh -Encoding UTF8
 <#
 # Run the Project.jar file

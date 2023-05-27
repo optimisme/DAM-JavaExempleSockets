@@ -55,12 +55,12 @@ cp -r ./$folderDevelopment/lib ./$folderRelease/lib
 # Create the 'run.sh' file
 cat > run.sh << EOF
 #!/bin/bash
-java -cp Project.jar:$CLASSPATH Main
+java -cp "Project.jar:$CLASSPATH" Main
 EOF
 
 # Create the 'run.ps1' file
 cat > run.ps1 << EOF
-java -cp Project.jar:$CLASSPATH Main
+java -cp "Project.jar:$CLASSPATH" Main
 EOF
 
 # Fem l'arxiu executable
