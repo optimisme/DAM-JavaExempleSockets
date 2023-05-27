@@ -21,20 +21,20 @@ Els clients WebSockets poden enviar missatges privats a un usuari específic tip
 A Linux i OSX:
 
 ```
-./compile.sh
+./build.sh
 ```
 
 A Windows Powershell:
 
 ```
-.\compile.bat
+.\build.ps1
 ```
 
 Or, from Visual Studio Code:
 
 ```
-"Terminal > Run task > Compile Project"
-
+"Terminal > Run task > Compile for UNIX"
+"Terminal > Run task > Compile for PowerShell"
 ```
 
 ### Llicència ###
