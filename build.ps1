@@ -19,7 +19,7 @@ if (Test-Path -Path "./assets") {
 
 # Generate the CLASSPATH by iterating over JAR files in the lib directory and its subdirectories
 $lib_dir = (Resolve-Path "lib").Path
-$jar_files = Get-ChildItem -Path $lib_dir -Filter "*.jar" -Recurse | ForEach-Object { $_.FullName.Replace($lib_dir + '\', '') }
+$jar_files = Get-ChildItem -Path $lib_dir -Filter "*.jar" -Recurse | ForEach-Object { ".\\lib\\" + $_.FullName.Replace($lib_dir + '\', '') }
 
 # Ensure to use the correct directory separator and enclose paths with quotes if they contain spaces
 $CLASSPATH = ($jar_files | ForEach-Object { 
@@ -29,6 +29,9 @@ $CLASSPATH = ($jar_files | ForEach-Object {
         $_.ToString().Replace('\', '/')
     } 
 }) -join ';'
+
+# Print the CLASSPATH for debugging
+Write-Output $CLASSPATH
 
 # Print the CLASSPATH for debugging
 Write-Output $CLASSPATH
