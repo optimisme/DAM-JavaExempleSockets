@@ -44,6 +44,9 @@ $CLASSPATHX = ($jar_files | ForEach-Object {
     } 
 }) -join ':'
 
+# Compile the Java source files and place the .class files in the bin directory
+javac -d ./bin/ ./src/*.java -cp $CLASSPATH
+
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
 $jarExePath = Get-ChildItem -Path C:\ -Recurse -Filter "jar.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
 & $jarExePath cfm ./Project.jar ./Manifest.txt -C bin .
