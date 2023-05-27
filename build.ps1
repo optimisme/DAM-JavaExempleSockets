@@ -35,7 +35,7 @@ Write-Output $CLASSPATH
 
 # Compile the Java source files and place the .class files in the bin directory
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
-<#
+
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
 $jarExePath = Get-ChildItem -Path C:\ -Recurse -Filter "jar.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
 & $jarExePath cfm ./Project.jar ./Manifest.txt -C bin .
@@ -64,7 +64,7 @@ java -cp Project.jar;$CLASSPATH Main
 #!/bin/bash
 java -cp Project.jar;$CLASSPATH Main
 "@ | Set-Content -Path ./$folderRelease/run.sh -Encoding UTF8
-
+<#
 # Run the Project.jar file
 Set-Location ./$folderRelease
 ./run.ps1
