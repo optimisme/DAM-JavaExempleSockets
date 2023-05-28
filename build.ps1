@@ -48,8 +48,18 @@ $CLASSPATHX = ($jar_files | ForEach-Object {
 javac -d ./bin/ ./src/*.java -cp $CLASSPATH
 
 # Create the Project.jar file with the specified manifest file and the contents of the bin directory
-$jarExePath = Get-ChildItem -Path C:\ -Recurse -Filter "jar.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
-& $jarExePath cfm ./Project.jar ./Manifest.txt -C bin .
+if (Get-Command jar -ErrorAction SilentlyContinue) {
+    # jar command is available, use it
+    jar cfm ./Project.jar ./Manifest.txt -C bin .
+} else {
+    # jar command is not available, try to find it
+    $jarExePath = Get-ChildItem -Path C:\ -Recurse -Filter "jar.exe" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+    if ($jarExePath) {
+        & $jarExePath cfm ./Project.jar ./Manifest.txt -C bin .
+    } else {
+        Write-Host "Jar command not found."
+    }
+}
 
 # Remove any .class files from the bin directory
 Remove-Item -Recurse -Force ./bin
