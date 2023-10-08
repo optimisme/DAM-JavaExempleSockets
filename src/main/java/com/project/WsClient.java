@@ -1,3 +1,4 @@
+package com.project;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Scanner;

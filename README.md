@@ -18,29 +18,24 @@ Els clients WebSockets poden enviar missatges privats a un usuari específic tip
 
 ### Compilació i funcionament ###
 
-A Linux i OSX:
-
-```
-./build.sh
-```
-
-A Windows Powershell:
-
-```
-.\build.ps1
+Cal el 'Maven' per compilar el projecte
+```bash
+mvn clean
+mvn compile
 ```
 
-Or, from Visual Studio Code:
-
-```
-"Terminal > Run task > Compile for UNIX"
-"Terminal > Run task > Compile for PowerShell"
+Per executar el projecte a Windows cal
+```bash
+.\run.ps1 com.project.Main
 ```
 
-### Llicència ###
+Per executar el projecte a Linux/macOS cal
+```bash
+./run.sh com.project.Main
+```
 
-Tenir en compte les llicències MIT de "WebSockets" i "slf4j":
-
-[WebSockets](https://github.com/TooTallNate/Java-WebSocket)
-
-[slf4j](https://www.slf4j.org/)
+Per executar un arxiu main directament
+```bash
+.\run.ps1 com.project.TcpServidor
+./run.sh com.project.TcpServidor
+```
